@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 
 void initializeTable(){
     // If the table exists, then return from the subroutine.
@@ -13,52 +14,52 @@ void initializeTable(){
     table = createHead('A',".-");
     
     // And push now the alphabetical codes.
-    push_element(table,createHead('B',"-..."));
-    push_element(table,createHead('C',"-.-."));
-    push_element(table,createHead('D',"-.."));
-    push_element(table,createHead('F',"."));
-    push_element(table,createHead('G',"--."));
-    push_element(table,createHead('H',"...."));
-    push_element(table,createHead('I',".."));
-    push_element(table,createHead('J',".---"));
-    push_element(table,createHead('K',"-.-"));
-    push_element(table,createHead('L',".-.."));
-    push_element(table,createHead('M',"--"));
-    push_element(table,createHead('N',"-."));
-    push_element(table,createHead('O',"---"));
-    push_element(table,createHead('P',".--."));
-    push_element(table,createHead('Q',"--.-"));
-    push_element(table,createHead('R',".-."));
-    push_element(table,createHead('S',"..."));
-    push_element(table,createHead('T',"-"));
-    push_element(table,createHead('U',"..-"));
-    push_element(table,createHead('V',"...-"));
-    push_element(table,createHead('W',".--"));
-    push_element(table,createHead('X',"-..-"));
-    push_element(table,createHead('Y',"-.--"));
-    push_element(table,createHead('Z',"--.."));
+    push_element(table,createHead('B',"-...\0"));
+    push_element(table,createHead('C',"-.-.\0"));
+    push_element(table,createHead('D',"-..\0"));
+    push_element(table,createHead('F',".\0"));
+    push_element(table,createHead('G',"--.\0"));
+    push_element(table,createHead('H',"....\0"));
+    push_element(table,createHead('I',"..\0"));
+    push_element(table,createHead('J',".---\0"));
+    push_element(table,createHead('K',"-.-\0"));
+    push_element(table,createHead('L',".-..\0"));
+    push_element(table,createHead('M',"--\0"));
+    push_element(table,createHead('N',"-.\0"));
+    push_element(table,createHead('O',"---\0"));
+    push_element(table,createHead('P',".--.\0"));
+    push_element(table,createHead('Q',"--.-\0"));
+    push_element(table,createHead('R',".-.\0"));
+    push_element(table,createHead('S',"...\0"));
+    push_element(table,createHead('T',"-\0"));
+    push_element(table,createHead('U',"..-\0"));
+    push_element(table,createHead('V',"...-\0"));
+    push_element(table,createHead('W',".--\0"));
+    push_element(table,createHead('X',"-..-\0"));
+    push_element(table,createHead('Y',"-.--\0"));
+    push_element(table,createHead('Z',"--..\0"));
     
     // Now, push the digits.
-    push_element(table,createHead('0',"-----"));
-    push_element(table,createHead('1',".----"));
-    push_element(table,createHead('2',"..---"));
-    push_element(table,createHead('3',"...--"));
-    push_element(table,createHead('4',"....-"));
-    push_element(table,createHead('5',"....."));
-    push_element(table,createHead('6',"-...."));
-    push_element(table,createHead('7',"--..."));
-    push_element(table,createHead('8',"---.."));
-    push_element(table,createHead('9',"----."));
+    push_element(table,createHead('0',"-----\0"));
+    push_element(table,createHead('1',".----\0"));
+    push_element(table,createHead('2',"..---\0"));
+    push_element(table,createHead('3',"...--\0"));
+    push_element(table,createHead('4',"....-\0"));
+    push_element(table,createHead('5',".....\0"));
+    push_element(table,createHead('6',"-....\0"));
+    push_element(table,createHead('7',"--...\0"));
+    push_element(table,createHead('8',"---..\0"));
+    push_element(table,createHead('9',"----.\0"));
    
     // Now, push the speical codes.
-    push_element(table,createHead(1,"......")); // Error code. 
-    push_element(table,createHead(2,"-.-.-.")); // Begin Transmission. (Legacy mode)
-    push_element(table,createHead(3,".-.-.-")); // End Transmission.   (Legacy mode)
-    push_element(table,createHead(4,"---...")); // Rest.               (Legacy mode)
+    push_element(table,createHead(1,"......\0")); // Error code. 
+    push_element(table,createHead(2,"-.-.-.\0")); // Begin Transmission. (Legacy mode)
+    push_element(table,createHead(3,".-.-.-\0")); // End Transmission.   (Legacy mode)
+    push_element(table,createHead(4,"---...\0")); // Rest.               (Legacy mode)
     // Now, push the special characters.
-    push_element(table,createHead(' ',"------")); // Space.
-    push_element(table,createHead('.',"-.----")); // Full stop.
-    push_element(table,createHead(',',"-..---")); // Comma.
+    push_element(table,createHead(' ',"------\0")); // Space.
+    push_element(table,createHead('.',"-.----\0")); // Full stop.
+    push_element(table,createHead(',',"-..---\0")); // Comma.
 }
 
 char* lookupFor(char key){
@@ -76,7 +77,7 @@ char* convert2(char* _string){
     int nStringL = strlen(_string);
     
     // Allocate the final output.
-    char* pOutMorse = malloc(1);
+    char *pOutMorse = (char *) malloc(1);
     // Track 'pOutMorse' length with 'nMorseLength'.
     int nMorseLength = 1;
 
