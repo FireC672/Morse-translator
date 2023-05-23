@@ -1,0 +1,2 @@
+In this folder u will find all .h files that are written by the developper 
+of the project.
