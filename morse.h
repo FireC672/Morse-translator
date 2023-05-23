@@ -5,8 +5,10 @@
 
 // This is where morse translation will happen.
 
-map_head_t* initializeTable();
+static map_head_t *table;
 
-void deinitializeTable();
+void initializeTable();
+char* lookupFor(char key);
+void closeTable();
 
 #endif

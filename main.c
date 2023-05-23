@@ -4,6 +4,8 @@
 #include "map.h"
 
 int main(int argc, char** argv){
+    initializeTable();
 
+    closeTable();
     return 0;
 }
