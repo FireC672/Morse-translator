@@ -94,8 +94,4 @@ void deconstructMap(map_head_t* head){
     // Then free the last element.
     free(cursor);
     free(cursor->value);
-
-    // // And free the head.
-    // free(head);    
-    // free(head->value);
 }

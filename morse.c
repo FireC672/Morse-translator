@@ -4,8 +4,9 @@
 #include <stdlib.h>
 
 map_head_t* initializeTable(){
-    map_head_t* element1 = createHead('A',".-");
-    return element1;
+    map_head_t* tableHead = createHead('A',".-");
+    push_element(tableHead,createHead('B',"-..."));
+    return tableHead;
 }
 
 void deinitializeTable();
