@@ -63,7 +63,14 @@ void initializeTable(){
 }
 
 char* lookupFor(char key){
-    return findElementByKey(key,table)->value;
+    // Extract the element from the map.
+    map_element_t *m = findElementByKey(key,table);
+    // If the element doesn't belong to any type in the map.
+    // Return an error code morse.
+    if(m == NULL)return findElementByKey(1,table)->value;
+
+    // If not, return the value of 'm'.
+    return m->value;
 }
 
 void closeTable(){
@@ -73,38 +80,27 @@ void closeTable(){
 
 // This function will convert '_string' to morse.
 char* convert2(char* _string){
-    // 'nStringL' holds the length of '_string'.
-    int nStringL = strlen(_string);
+    int nIn = strlen(_string);
     
-    // Allocate the final output.
-    char *pOutMorse = (char *) malloc(1);
-    // Track 'pOutMorse' length with 'nMorseLength'.
-    int nMorseLength = 1;
+    int nOut = 1;
+    char* pOut = (char *) malloc(1);
+    
+    for(int i = 0; i < nIn; i++){
+        char tch = (_string[i]);
+        char* tMorse = lookupFor(tch);
+        int nMorseLen = strlen(tMorse);
 
-    for(int i = 0; i < nStringL; i++){
-       // Get the temporary buffer of the 'lookupFor' output,
-       // By passing the lowered character at location i in '_string'.
-       char* tempbuff = lookupFor(tolower(_string[i]));
-       // Hold 'tempbuff' length in 'templ'.
-       int templ = strlen(tempbuff);
-       // Reallocate 'pOutMorse' to fit in with 'tempbuff' characters.
-       pOutMorse = realloc(pOutMorse,nMorseLength+templ);
+        pOut = realloc(pOut,nOut+nMorseLen);
 
-       for(int j = 0; j < templ; j++){
-           // Then from the last index 'nMorseLength-1', go through each character
-           // in 'tempbuff', and copy each character to the right location in the final output.
-           pOutMorse[nMorseLength-1+j] = tempbuff[j];
-       }
-       
-       // Then increment 'nMorseLength' by 'templ'.
-       // NOTE: we incremented 'nMorseLength' after copying, this is because,
-       // nMorseLength-1 holds the last index in 'pOutMorse', so incrementing this
-       // before copying, will render nMorseLength useless.
-       nMorseLength += templ;
+        for(int j = 0; j < nMorseLen; j++){
+            pOut[j+(nMorseLen-1)] = tMorse[j];
+        }
+
+        nOut += nMorseLen;
     }
-    
-    // Then set a null-terminator at the end.
-    pOutMorse = realloc(pOutMorse,nMorseLength+1);
-    pOutMorse[nMorseLength]='\0';
-    return pOutMorse;
+
+    pOut = realloc(pOut,nOut+1);
+    pOut[nOut]='\0';
+
+    return pOut;
 } 
