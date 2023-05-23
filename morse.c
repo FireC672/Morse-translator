@@ -1,6 +1,7 @@
 #include "morse.h"
 #include "map.h"
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 
 void initializeTable(){
@@ -68,3 +69,41 @@ void closeTable(){
     // 'closeTable()' will deallocate the table.
     deconstructMap(table);
 }
+
+// This function will convert '_string' to morse.
+char* convert2(char* _string){
+    // 'nStringL' holds the length of '_string'.
+    int nStringL = strlen(_string);
+    
+    // Allocate the final output.
+    char* pOutMorse = malloc(1);
+    // Track 'pOutMorse' length with 'nMorseLength'.
+    int nMorseLength = 1;
+
+    for(int i = 0; i < nStringL; i++){
+       // Get the temporary buffer of the 'lookupFor' output,
+       // By passing the lowered character at location i in '_string'.
+       char* tempbuff = lookupFor(tolower(_string[i]));
+       // Hold 'tempbuff' length in 'templ'.
+       int templ = strlen(tempbuff);
+       // Reallocate 'pOutMorse' to fit in with 'tempbuff' characters.
+       pOutMorse = realloc(pOutMorse,nMorseLength+templ);
+
+       for(int j = 0; j < templ; j++){
+           // Then from the last index 'nMorseLength-1', go through each character
+           // in 'tempbuff', and copy each character to the right location in the final output.
+           pOutMorse[nMorseLength-1+j] = tempbuff[j];
+       }
+       
+       // Then increment 'nMorseLength' by 'templ'.
+       // NOTE: we incremented 'nMorseLength' after copying, this is because,
+       // nMorseLength-1 holds the last index in 'pOutMorse', so incrementing this
+       // before copying, will render nMorseLength useless.
+       nMorseLength += templ;
+    }
+    
+    // Then set a null-terminator at the end.
+    pOutMorse = realloc(pOutMorse,nMorseLength+1);
+    pOutMorse[nMorseLength]='\0';
+    return pOutMorse;
+} 
