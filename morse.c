@@ -83,26 +83,39 @@ void closeTable(){
 }
 
 // This function will convert '_string' to morse equivalence. 
+// This was implemented using the second solution.
 char* convert2(char* _string){
+    // 'predictedLength' is the maximum length needed to fit in all the morse characters.
     int predictedLength = 0; 
+    // 'nStringLen' is the length of the input '_string'.
     int nStringLen = strlen(_string);
-
+    
+    // Now, we are calculating the required size for each character.
     for(int i = 0; i < nStringLen;i++){
        char* morseC = lookupFor(toupper(_string[i]));
-       predictedLength += strlen(morseC)+1;
+       predictedLength += strlen(morseC);
     }
-
+    
+    // Now, that we have the predicted length, we can allocate the required amount safely.
     char* outMorse = malloc(predictedLength+1);
+    // Setting all the memory from the initial address until the end to zero.
     memset(outMorse,0,predictedLength+1);
-
+    
+    // Now pushing onto 'outMorse' the morse characters.
     for(int i = 0; i < predictedLength+1; i++){
+        // By storing the address of each key-value pair in the pointer 'morseC'.
         char* morseC = lookupFor(toupper(_string[i]));
+        // And storing the size of 'morseC'.
         int nMorseC = strlen(morseC);
-
+        
+        // To push on the characters correctly.
         for(int j = 0; j < nMorseC; j++){
             outMorse[i+j]=morseC[j];
         }
     }
-
+    
+    // Now return the output.
+    // Note that even we put invalid characters, we can safely return
+    // the correct output.
     return outMorse;
 } 
