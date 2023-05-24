@@ -3,7 +3,7 @@
 #include <stdlib.h> 
 #include <string.h>
 
-
+// This function will create the base or an element of a map.
 map_head_t* createHead(int _key, char* _value){
     // Allocate a 'head' in the heap, and set a pointer to it.
     map_head_t *head = (map_head_t *) malloc(sizeof(map_head_t));
@@ -23,6 +23,7 @@ map_head_t* createHead(int _key, char* _value){
     return head;
 }
 
+// Pushes a new element to the map.
 int push_element(map_head_t* h, map_element_t* elem){
     // If the 'head' is a null-object or the element is a null-object, then don't bother.
     if(h == NULL || elem == NULL)return 1; 
@@ -42,7 +43,10 @@ int push_element(map_head_t* h, map_element_t* elem){
     return 0;
 }
 
-
+// This function tries to find the element indexed by '_key'.
+// Returns 'NULL' if it didn't found anything or if the head is null.
+// Returns 'head' if there are no next elements.
+// Returns 'nPointer' => Found Element ; if it finds the element.
 map_element_t* findElementByKey(int _key, map_head_t *head){
     // If there are not 'head', then return NULL (0).
     if(head == NULL)return NULL;
@@ -62,8 +66,13 @@ map_element_t* findElementByKey(int _key, map_head_t *head){
     return NULL;
 }
 
+// This function will destroy each element in the map starting from 'head'.
+// At the end the function will destroy the head.
 void deconstructMap(map_head_t* head){
     
+    // If there are no head provided, then exit.
+    if(head == NULL)return;
+
     // If the 'head' doesn't have a element next to it, then don't bother doing the loop.
     if(head->next == NULL){
         free(head);

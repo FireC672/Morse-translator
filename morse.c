@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// This function will initialize the instance of 'table' (Singleton principle).
 void initializeTable(){
     // If the table exists, then return from the subroutine.
     if(table != NULL)return;
@@ -62,6 +63,8 @@ void initializeTable(){
     push_element(table,createHead(',',"-..---\0")); // Comma.
 }
 
+// This function is specifically designed for the 'Morse Table'. 
+// If the the 'key' is invalid, then the function will return 'Error Code morse'.
 char* lookupFor(char key){
     // Extract the element from the map.
     map_element_t *m = findElementByKey(key,table);
@@ -73,12 +76,13 @@ char* lookupFor(char key){
     return m->value;
 }
 
+// This function will destroy the table.
 void closeTable(){
     // 'closeTable()' will deallocate the table.
     deconstructMap(table);
 }
 
-// This function will convert '_string' to morse.
+// This function will convert '_string' to morse equivalence. 
 char* convert2(char* _string){
     int nIn = strlen(_string);
     
