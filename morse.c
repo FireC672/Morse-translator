@@ -84,27 +84,35 @@ void closeTable(){
 
 // This function will convert '_string' to morse equivalence. 
 char* convert2(char* _string){
+    // 'nIn' is set to the length of '_string'.
     int nIn = strlen(_string);
     
-    int nOut = 1;
-    char* pOut = (char *) malloc(1);
+    // 'nOut' is set to the temporary length of 'pOut'.
+    int nOut = 2;
+
+    // 'pOut' is a pointer to the output string.
+    char* pOut = (char *) malloc(2);
+    memset(pOut,0,2);
     
     for(int i = 0; i < nIn; i++){
-        char tch = (_string[i]);
+        // Store the lowered character of '_string' at position i. in 'tch' => Temporary character.
+        char tch = toupper(_string[i]);
+        // Store the temporary morse code string in 'tMorse'.
         char* tMorse = lookupFor(tch);
+        // Store the length of 'tMorse' in 'nMorseLen'.
         int nMorseLen = strlen(tMorse);
-
-        pOut = realloc(pOut,nOut+nMorseLen);
-
+        
+        // Reallocate 'pOut' to fit in all the characters of 'tMorse'.
+        pOut = realloc(pOut,nOut+nMorseLen+1);
+        
+        // Now, set those characters to 'pOut'.
         for(int j = 0; j < nMorseLen; j++){
-            pOut[j+(nMorseLen-1)] = tMorse[j];
+            pOut[nOut+j] = tMorse[j];
         }
 
+        // And, increment 'nOut' by 'nMorseLen', to keep track of the actual length.
         nOut += nMorseLen;
     }
-
-    pOut = realloc(pOut,nOut+1);
-    pOut[nOut]='\0';
 
     return pOut;
 } 
