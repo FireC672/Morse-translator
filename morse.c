@@ -12,7 +12,7 @@ void initializeTable(){
     
     // If the 'table' hasn't been created yet.
     // Then allocate a head and set a pointer to it.
-    table = createHead('A',".-");
+    table = createHead('A',".-\0");
     
     // And push now the alphabetical codes.
     push_element(table,createHead('B',"-...\0"));
@@ -84,35 +84,25 @@ void closeTable(){
 
 // This function will convert '_string' to morse equivalence. 
 char* convert2(char* _string){
-    // 'nIn' is set to the length of '_string'.
-    int nIn = strlen(_string);
-    
-    // 'nOut' is set to the temporary length of 'pOut'.
-    int nOut = 2;
+    int predictedLength = 0; 
+    int nStringLen = strlen(_string);
 
-    // 'pOut' is a pointer to the output string.
-    char* pOut = (char *) malloc(2);
-    memset(pOut,0,2);
-    
-    for(int i = 0; i < nIn; i++){
-        // Store the lowered character of '_string' at position i. in 'tch' => Temporary character.
-        char tch = toupper(_string[i]);
-        // Store the temporary morse code string in 'tMorse'.
-        char* tMorse = lookupFor(tch);
-        // Store the length of 'tMorse' in 'nMorseLen'.
-        int nMorseLen = strlen(tMorse);
-        
-        // Reallocate 'pOut' to fit in all the characters of 'tMorse'.
-        pOut = realloc(pOut,nOut+nMorseLen+1);
-        
-        // Now, set those characters to 'pOut'.
-        for(int j = 0; j < nMorseLen; j++){
-            pOut[nOut+j] = tMorse[j];
-        }
-
-        // And, increment 'nOut' by 'nMorseLen', to keep track of the actual length.
-        nOut += nMorseLen;
+    for(int i = 0; i < nStringLen;i++){
+       char* morseC = lookupFor(toupper(_string[i]));
+       predictedLength += strlen(morseC)+1;
     }
 
-    return pOut;
+    char* outMorse = malloc(predictedLength+1);
+    memset(outMorse,0,predictedLength+1);
+
+    for(int i = 0; i < predictedLength+1; i++){
+        char* morseC = lookupFor(toupper(_string[i]));
+        int nMorseC = strlen(morseC);
+
+        for(int j = 0; j < nMorseC; j++){
+            outMorse[i+j]=morseC[j];
+        }
+    }
+
+    return outMorse;
 } 
