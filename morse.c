@@ -150,6 +150,7 @@ char *reverse2(char *_string){
         if(_string[i] == '/'){
             map_element_t *e = findElementByValue(buff,table);
             output[k++] = e->key;
+            
             memset(buff,0,10);
             j=0;
         }
