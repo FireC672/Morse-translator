@@ -12,55 +12,55 @@ void initializeTable(){
     
     // If the 'table' hasn't been created yet.
     // Then allocate a head and set a pointer to it.
-    table = createHead('A',".-\0");
+    table = createHead('A',".-/\0");
     
     // And push now the alphabetical codes.
-    push_element(table,createHead('B',"-...\0"));
-    push_element(table,createHead('C',"-.-.\0"));
-    push_element(table,createHead('D',"-..\0"));
-    push_element(table,createHead('F',".\0"));
-    push_element(table,createHead('G',"--.\0"));
-    push_element(table,createHead('H',"....\0"));
-    push_element(table,createHead('I',"..\0"));
-    push_element(table,createHead('J',".---\0"));
-    push_element(table,createHead('K',"-.-\0"));
-    push_element(table,createHead('L',".-..\0"));
-    push_element(table,createHead('M',"--\0"));
-    push_element(table,createHead('N',"-.\0"));
-    push_element(table,createHead('O',"---\0"));
-    push_element(table,createHead('P',".--.\0"));
-    push_element(table,createHead('Q',"--.-\0"));
-    push_element(table,createHead('R',".-.\0"));
-    push_element(table,createHead('S',"...\0"));
-    push_element(table,createHead('T',"-\0"));
-    push_element(table,createHead('U',"..-\0"));
-    push_element(table,createHead('V',"...-\0"));
-    push_element(table,createHead('W',".--\0"));
-    push_element(table,createHead('X',"-..-\0"));
-    push_element(table,createHead('Y',"-.--\0"));
-    push_element(table,createHead('Z',"--..\0"));
+    push_element(table,createHead('B',"-.../\0"));
+    push_element(table,createHead('C',"-.-./\0"));
+    push_element(table,createHead('D',"-../\0"));
+    push_element(table,createHead('F',"./\0"));
+    push_element(table,createHead('G',"--./\0"));
+    push_element(table,createHead('H',"..../\0"));
+    push_element(table,createHead('I',"../\0"));
+    push_element(table,createHead('J',".---/\0"));
+    push_element(table,createHead('K',"-.-/\0"));
+    push_element(table,createHead('L',".-../\0"));
+    push_element(table,createHead('M',"--/\0"));
+    push_element(table,createHead('N',"-./\0"));
+    push_element(table,createHead('O',"---/\0"));
+    push_element(table,createHead('P',".--./\0"));
+    push_element(table,createHead('Q',"--.-/\0"));
+    push_element(table,createHead('R',".-./\0"));
+    push_element(table,createHead('S',".../\0"));
+    push_element(table,createHead('T',"-/\0"));
+    push_element(table,createHead('U',"..-/\0"));
+    push_element(table,createHead('V',"...-/\0"));
+    push_element(table,createHead('W',".--/\0"));
+    push_element(table,createHead('X',"-..-/\0"));
+    push_element(table,createHead('Y',"-.--/\0"));
+    push_element(table,createHead('Z',"--../\0"));
     
     // Now, push the digits.
-    push_element(table,createHead('0',"-----\0"));
-    push_element(table,createHead('1',".----\0"));
-    push_element(table,createHead('2',"..---\0"));
-    push_element(table,createHead('3',"...--\0"));
-    push_element(table,createHead('4',"....-\0"));
-    push_element(table,createHead('5',".....\0"));
-    push_element(table,createHead('6',"-....\0"));
-    push_element(table,createHead('7',"--...\0"));
-    push_element(table,createHead('8',"---..\0"));
-    push_element(table,createHead('9',"----.\0"));
+    push_element(table,createHead('0',"-----/\0"));
+    push_element(table,createHead('1',".----/\0"));
+    push_element(table,createHead('2',"..---/\0"));
+    push_element(table,createHead('3',"...--/\0"));
+    push_element(table,createHead('4',"....-/\0"));
+    push_element(table,createHead('5',"...../\0"));
+    push_element(table,createHead('6',"-..../\0"));
+    push_element(table,createHead('7',"--.../\0"));
+    push_element(table,createHead('8',"---../\0"));
+    push_element(table,createHead('9',"----./\0"));
    
     // Now, push the speical codes.
-    push_element(table,createHead(1,"......\0")); // Error code. 
-    push_element(table,createHead(2,"-.-.-.\0")); // Begin Transmission. (Legacy mode)
-    push_element(table,createHead(3,".-.-.-\0")); // End Transmission.   (Legacy mode)
-    push_element(table,createHead(4,"---...\0")); // Rest.               (Legacy mode)
+    push_element(table,createHead(1,"....../\0")); // Error code. 
+    push_element(table,createHead(2,"-.-.-./\0")); // Begin Transmission. (Legacy mode)
+    push_element(table,createHead(3,".-.-.-/\0")); // End Transmission.   (Legacy mode)
+    push_element(table,createHead(4,"---.../\0")); // Rest.               (Legacy mode)
     // Now, push the special characters.
-    push_element(table,createHead(' ',"------\0")); // Space.
-    push_element(table,createHead('.',"-.----\0")); // Full stop.
-    push_element(table,createHead(',',"-..---\0")); // Comma.
+    push_element(table,createHead(' ',"------/\0")); // Space.
+    push_element(table,createHead('.',"-.----/\0")); // Full stop.
+    push_element(table,createHead(',',"-..---/\0")); // Comma.
 }
 
 // This function is specifically designed for the 'Morse Table'. 
@@ -92,6 +92,7 @@ char* convert2(char* _string){
     
     // Now, we are calculating the required size for each character.
     for(int i = 0; i < nStringLen;i++){
+       if(_string[i]=='\0')break;
        char* morseC = lookupFor(toupper(_string[i]));
        predictedLength += strlen(morseC);
     }
@@ -103,6 +104,7 @@ char* convert2(char* _string){
     
     // Now pushing onto 'outMorse' the morse characters.
     for(int i = 0; i < predictedLength+1; i++){
+        if(_string[i]=='\0')break;
         // By storing the address of each key-value pair in the pointer 'morseC'.
         char* morseC = lookupFor(toupper(_string[i]));
         // And storing the size of 'morseC'.

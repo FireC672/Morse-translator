@@ -15,8 +15,8 @@
 int main(int argc, char** argv){
     initializeTable();
 
-    char* converted = convert2("ABC");
-    printf("%s",converted);
+    char* converted = convert2("B");
+    printf("%s \n",converted);
     free(converted);
 
     closeTable();
