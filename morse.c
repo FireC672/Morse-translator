@@ -126,16 +126,33 @@ char* convert2(char* _string){
 // readable latin alphanumerical characters.
 char *reverse2(char *_string){
     int nStringLength = strlen(_string);
+    // We are going to pre-calculate the output size.
+    int nOutputLength = 0;
+
+    for(int i = 0; i < nStringLength; i++)
+       if(_string[i] == '/')
+          nOutputLength++;
+    
+
+    char* output = malloc(nOutputLength+1);
+    memset(output,0,nOutputLength+1);
     
     // 'buff' is very important for later.
+
     char buff[10]; 
     memset(buff,0,10);
+
     int j = 0;
+    int k = 0; 
 
     for(int i = 0; i < nStringLength; i++){
         buff[j++] = _string[i];
         if(_string[i] == '/'){
-            
+            map_element_t *e = findElementByValue(buff,table);
+            output[k++] = e->key;
+            j=0;
         }
     }
+
+    return output;
 }
