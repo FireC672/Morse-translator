@@ -93,12 +93,12 @@ char* convert2(char* _string){
     // Now, we are calculating the required size for each character.
     for(int i = 0; i < nStringLen;i++){
        if(_string[i]=='\0')break;
-       char* morseC = lookupFor(toupper(_string[i]));
+       char *morseC = lookupFor(toupper(_string[i]));
        predictedLength += strlen(morseC);
     }
     
     // Now, that we have the predicted length, we can allocate the required amount safely.
-    char* outMorse = malloc(predictedLength+1);
+    char *outMorse = malloc(predictedLength+1);
     // Setting all the memory from the initial address until the end to zero.
     memset(outMorse,0,predictedLength+1);
     
@@ -121,3 +121,21 @@ char* convert2(char* _string){
     // the correct output.
     return outMorse;
 } 
+
+// This function will transform morse instructions into
+// readable latin alphanumerical characters.
+char *reverse2(char *_string){
+    int nStringLength = strlen(_string);
+    
+    // 'buff' is very important for later.
+    char buff[10]; 
+    memset(buff,0,10);
+    int j = 0;
+
+    for(int i = 0; i < nStringLength; i++){
+        buff[j++] = _string[i];
+        if(_string[i] == '/'){
+            
+        }
+    }
+}

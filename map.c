@@ -66,6 +66,27 @@ map_element_t* findElementByKey(int _key, map_head_t *head){
     return NULL;
 }
 
+/// @brief This function will try to find the 'map_element_t' that has the same value as 'value'.
+/// @brief NOTE: this function will return the first equality.
+/// @param value The comparator value.
+/// @param head The head of the map.
+/// @return The first found element of value equal to 'value'.
+map_element_t* findElementByValue(char *value, map_head_t *head){
+    // 'cursor' is a pointer that will go through each element in the map;
+    // and when the occurence is found, return its address.
+    map_element_t *cursor = head;
+
+    // Loop through each element in the map.
+    while(cursor->next != NULL){
+        // Compare the strings.
+        if(!strcmp(cursor->value,value))return cursor;
+        cursor = cursor->next;
+    }
+    
+    // If we didn't occur with any element, then return 'NULL'.
+    return NULL;
+}
+
 // This function will destroy each element in the map starting from 'head'.
 // At the end the function will destroy the head.
 void deconstructMap(map_head_t* head){

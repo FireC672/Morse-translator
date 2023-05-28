@@ -8,9 +8,10 @@
 static map_head_t *table;
 
 void initializeTable();
-char* lookupFor(char key);
+char *lookupFor(char key);
 void closeTable();
 
-char* convert2(char* _string);
+char *convert2(char *_string);
+char *reverse2(char *_string);
 
 #endif
