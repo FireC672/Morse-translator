@@ -13,12 +13,6 @@
 */
 
 int main(int argc, char** argv){
-    initializeTable();
-
-    char* reversion = reverse2("-.../\0");
-    printf("%s\n",reversion);
-    free(reversion);
-
-    closeTable();
+    
     return 0;
 }
