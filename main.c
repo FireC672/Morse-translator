@@ -15,9 +15,9 @@
 int main(int argc, char** argv){
     initializeTable();
 
-    char* converted = convert2("B");
-    printf("%s \n",converted);
-    free(converted);
+    char* reversion = reverse2("-.../\0");
+    printf("%s\n",reversion);
+    free(reversion);
 
     closeTable();
     return 0;
