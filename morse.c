@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// This function will initialize the instance of 'table' (Singleton principle).
+/// @brief This function will initialize the instance of 'table' (Singleton principle).
 void initializeTable(){
     // If the table exists, then return from the subroutine.
     if(table != NULL)return;
@@ -65,6 +65,11 @@ void initializeTable(){
 
 // This function is specifically designed for the 'Morse Table'. 
 // If the the 'key' is invalid, then the function will return 'Error Code morse'.
+
+/// @brief This function is specifically designed for the 'Morse Table'. 
+/// @brief If the the 'key' is invalid, then the function will return 'Error Code morse'.
+/// @param key Is the character to lookup for.
+/// @return The correct morse instruction, (If 'key' is invalid, then it will return the error code);
 char* lookupFor(char key){
     // Extract the element from the map.
     map_element_t *m = findElementByKey(key,table);
@@ -76,14 +81,17 @@ char* lookupFor(char key){
     return m->value;
 }
 
-// This function will destroy the table.
+
+/// @brief This function destroyes the morse code conversion table.
 void closeTable(){
     // 'closeTable()' will deallocate the table.
     deconstructMap(table);
 }
 
-// This function will convert '_string' to morse equivalence. 
-// This was implemented using the second solution.
+/// @brief This function will convert '_string' to morse equivalence. 
+/// @brief This was implemented using the second solution.
+/// @param _string The input string. (Assuming it is a normal string).
+/// @return A string as morse code instructions that make up the '_string'.
 char* convert2(char* _string){
     // 'predictedLength' is the maximum length needed to fit in all the morse characters.
     int predictedLength = 0; 
@@ -122,36 +130,52 @@ char* convert2(char* _string){
     return outMorse;
 } 
 
-// This function will transform morse instructions into
-// readable latin alphanumerical characters.
+
+/// @brief This function will transform morse instructions into
+/// @brief readable latin alphanumerical characters.
+/// @param _string The input string (Assuming it is morse code).
+/// @return The characters that make up the morse code.
 char *reverse2(char *_string){
     int nStringLength = strlen(_string);
     // We are going to pre-calculate the output size.
     int nOutputLength = 0;
-
+    
+    // Pre-calculating the size of the output.
     for(int i = 0; i < nStringLength; i++)
        if(_string[i] == '/')
           nOutputLength++;
     
-
+    // Now allocate 'output' with the pre-calculated length.
     char* output = malloc(nOutputLength+1);
+    // Nullize or nullify the output.
     memset(output,0,nOutputLength+1);
 
     // 'buff' is very important for later.
-
+    // 'buff' is the array that hold the temporary morse code.
     char buff[10]; 
+    // Now, nullize / nullify this buffer.
     memset(buff,0,10);
-
+    
+    // 'j' is the index serving for 'buff'.
     int j = 0;
+    // 'k' is for the output.
     int k = 0; 
-
+    
+    // Now, loop through each characters in '_string'
     for(int i = 0; i < nStringLength; i++){
+        // And set the character at 'i' in '_string' to buff in location j.
+        // After setting the character, increment j.
         buff[j++] = _string[i];
+        // If we reach '/', then we can use our buffer to do the conversion.
         if(_string[i] == '/'){
+            // Here, we set a pointer 'e' to the 
+            // element in the table with the correct value.
             map_element_t *e = findElementByValue(buff,table);
+            // And push e's key at k+1 position in the string output.
             output[k++] = e->key;
-            
+            // Now clear the buffer 'buff'.
             memset(buff,0,10);
+            // And reset 'j'.
             j=0;
         }
     }
