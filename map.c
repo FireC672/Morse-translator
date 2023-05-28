@@ -3,7 +3,10 @@
 #include <stdlib.h> 
 #include <string.h>
 
-// This function will create the base or an element of a map.
+/// @brief This function will create the base or an element of a map.
+/// @param _key The key of the element.
+/// @param _value The value of the element.
+/// @return The pointer to the element in memory.
 map_head_t* createHead(int _key, char* _value){
     // Allocate a 'head' in the heap, and set a pointer to it.
     map_head_t *head = (map_head_t *) malloc(sizeof(map_head_t));
@@ -23,7 +26,11 @@ map_head_t* createHead(int _key, char* _value){
     return head;
 }
 
-// Pushes a new element to the map.
+
+/// @brief Pushes a new element to the map.
+/// @param h Head of a map.
+/// @param elem The element to push onto the map.
+/// @return '0' if successfull, or otherwise '1' if not.
 int push_element(map_head_t* h, map_element_t* elem){
     // If the 'head' is a null-object or the element is a null-object, then don't bother.
     if(h == NULL || elem == NULL)return 1; 
@@ -43,10 +50,12 @@ int push_element(map_head_t* h, map_element_t* elem){
     return 0;
 }
 
-// This function tries to find the element indexed by '_key'.
-// Returns 'NULL' if it didn't found anything or if the head is null.
-// Returns 'head' if there are no next elements.
-// Returns 'nPointer' => Found Element ; if it finds the element.
+/// @brief This function tries to find the element indexed by '_key'.
+/// @param _key The key of an element in the map pointed in 'head'.
+/// @param head The base of the map.
+/// @return 'NULL' if it didn't found anything or if the head is null.
+/// @return 'head' if there are no next elements.
+/// @return 'nPointer' => Found Element ; if it finds the element.
 map_element_t* findElementByKey(int _key, map_head_t *head){
     // If there are not 'head', then return NULL (0).
     if(head == NULL)return NULL;
@@ -87,8 +96,10 @@ map_element_t* findElementByValue(char *value, map_head_t *head){
     return NULL;
 }
 
-// This function will destroy each element in the map starting from 'head'.
-// At the end the function will destroy the head.
+
+/// @brief This function will destroy each element in the map starting from 'head'.
+/// @brief At the end the function will destroy the head.
+/// @param head The bottom element of a map, or base.
 void deconstructMap(map_head_t* head){
     
     // If there are no head provided, then exit.

@@ -63,9 +63,6 @@ void initializeTable(){
     push_element(table,createHead(',',"-..---/\0")); // Comma.
 }
 
-// This function is specifically designed for the 'Morse Table'. 
-// If the the 'key' is invalid, then the function will return 'Error Code morse'.
-
 /// @brief This function is specifically designed for the 'Morse Table'. 
 /// @brief If the the 'key' is invalid, then the function will return 'Error Code morse'.
 /// @param key Is the character to lookup for.
