@@ -25,17 +25,17 @@ Here are the legacy codes (you can add yours of-course).
    </tr>
 
    <tr>
-     <td>......</td>
+     <td>**......**</td>
      <td>Error code, represents an error.</td>
    </tr>
 
    <tr>
-      <td>-.-.-.</td>
+      <td>**-.-.-.**</td>
       <td>Begin Transmission.</td>
    </tr>
 
    <tr>
-      <td>.-.-.</td>
+      <td>**.-.-.**</td>
       <td>End Transmission</td>
    </tr>
 </table>
