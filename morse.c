@@ -63,6 +63,10 @@ void initializeTable(){
     push_element(table,createHead(' ',"------/\0")); // Space.
     push_element(table,createHead('.',"-.----/\0")); // Full stop.
     push_element(table,createHead(',',"-..---/\0")); // Comma.
+    push_element(table,createHead('[',"-...--/\0")); // Open Bracket
+    push_element(table,createHead(']',".---../\0")); // Closing Bracket.
+    push_element(table,createHead('(',"-..-../\0")); // Open Parathensis
+    push_element(table,createHead(')',".--.--/\0")); // Closing Parathensis.
 }
 
 /// @brief This function is specifically designed for the 'Morse Table'. 
