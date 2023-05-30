@@ -8,7 +8,7 @@ unsigned char decodeMode = 0;
 
 int main(int argc, char** argv){
   if(argc < 2){
-    printf("\033[31m\033[1merror: \033[0m provide source file.\n");
+    printf("\033[31m\033[1merror: \033[0mprovided source file.\n");
     return 1;
   }
 
@@ -19,7 +19,7 @@ int main(int argc, char** argv){
     return 1;
   }
 
-  for(int i = 1; i < argc; i++){
+  for(int i = 2; i < argc; i++){
     if(!strcmp(argv[i],"-d") || !strcmp(argv[i],"--decode")){
       decodeMode = 1;
       continue;

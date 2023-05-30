@@ -18,7 +18,8 @@ void initializeTable(){
     push_element(table,createHead('B',"-.../\0"));
     push_element(table,createHead('C',"-.-./\0"));
     push_element(table,createHead('D',"-../\0"));
-    push_element(table,createHead('F',"./\0"));
+    push_element(table,createHead('E','./\0'));
+    push_element(table,createHead('F',"..-./\0"));
     push_element(table,createHead('G',"--./\0"));
     push_element(table,createHead('H',"..../\0"));
     push_element(table,createHead('I',"../\0"));
