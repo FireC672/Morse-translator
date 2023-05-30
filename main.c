@@ -11,6 +11,8 @@ int main(int argc, char** argv){
     printf("\033[31m\033[1merror: \033[0m provide source file.\n");
     return 1;
   }
+
+  if(!strcmp(argv[1],"-h") || !strcmp(argv[1],"--help"))goto help_goto;
   FILE *source = fopen(argv[1],"r");
   if(source == NULL){
     printf("\033[31m\033[1merror:\033[0m source file \'%s\' is invalid.\n",argv[1]);
@@ -25,6 +27,20 @@ int main(int argc, char** argv){
     if(!strcmp(argv[i],"-e") || !strcmp(argv[i],"--encode")){
       decodeMode = 0;
       continue;
+    }
+
+    if(!strcmp(argv[i],"-h") || !strcmp(argv[i],"--help")){
+      help_goto: 
+      printf("\t\tMorse-Translator made by FireC675.\n");
+      printf("This project is under the GNU General Public License.\n");
+      printf("This program is used to convert Latin -> Morse or Morse -> Latin.\n");
+      printf("This program accepts file input.\n");
+      printf("Commands:\n");
+      printf("\t -e or --encode (Can be implicit): When this option is triggred, then the program assumes\n");
+      printf("\t                                   that the input is regular characters.\n\n");
+      printf("\t -d or --decode (Must be explicit): When this option is triggred, then the program assumes\n");
+      printf("\t                                   that the input is morse characters.\n\n"); 
+      return 0;
     }
     
     printf("\033[33m\033[1mwarning: \033[0mbad option \'%s\'.\n",argv[i]);
