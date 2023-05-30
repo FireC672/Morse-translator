@@ -55,6 +55,7 @@ void initializeTable(){
     // Now, push the speical codes.
     push_element(table,createHead(1,"....../\0")); // Error code. 
     push_element(table,createHead(2,"-.-.-./\0")); // Begin Transmission. (Legacy mode)
+    push_element(table,createHead(EOF,".-.-.-/\0")); // End Transmission EOF. 
     push_element(table,createHead(3,".-.-.-/\0")); // End Transmission.   (Legacy mode)
     push_element(table,createHead(4,"---.../\0")); // Rest.               (Legacy mode)
     // Now, push the special characters.
@@ -177,4 +178,8 @@ char *reverse2(char *_string){
     }
 
     return output;
+}
+
+char *convert2c(char tok){
+    return lookupFor(tok);
 }

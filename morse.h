@@ -15,4 +15,6 @@ void closeTable();
 char *convert2(char *_string);
 char *reverse2(char *_string);
 
+char *convert2c(char tok);
+
 #endif

@@ -17,16 +17,11 @@ int main(int argc, char** argv){
   }
   
   initializeTable();
-
-  fseek(source,0,SEEK_END);
-  size_t nFileSize = ftell(source);
-  rewind(source);
-
   char t = 0;
-  while(t = fgetc(source)){
-    char *morseInstruction = convert2(t);
-    printf("%s",morseInstruction);
+  while((t = fgetc(source)) != EOF){
+    printf("%s",convert2c(t));
   }
+  putchar('\n');
 
   fclose(source);
   closeTable();
