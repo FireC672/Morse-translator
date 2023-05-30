@@ -4,15 +4,20 @@
 #include "morse.h"
 #include "map.h"
 
-/*
-  TODOs:
-    *---> Implement argument parsing.
-    *---> Implement the decoding process.
-    *---> Probably implement a '--help' function.
-    That is all.
-*/
 
 int main(int argc, char** argv){
-    
-    return 0;
+  if(argc < 1){
+    printf("\033[31m\033[1merror: \033[0m provide source file.\n");
+    return 1;
+  }
+  FILE* source = fopen(argv[1],"r");
+  if(source == NULL){
+    printf("\033[31m\033[1merror:\033[0m source file \'%s\' is invalid.\n",argv[1]);
+    return 1;
+  }
+
+  
+
+  fclose(source);
+  return 0;
 }
