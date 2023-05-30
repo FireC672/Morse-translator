@@ -181,5 +181,5 @@ char *reverse2(char *_string){
 }
 
 char *convert2c(char tok){
-    return lookupFor(tok);
+    return lookupFor(toupper(tok));
 }
