@@ -78,7 +78,6 @@ char* lookupFor(char key){
     return m->value;
 }
 
-
 /// @brief This function destroyes the morse code conversion table.
 void closeTable(){
     // 'closeTable()' will deallocate the table.

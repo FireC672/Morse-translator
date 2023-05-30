@@ -11,6 +11,7 @@ void initializeTable();
 char *lookupFor(char key);
 void closeTable();
 
+
 char *convert2(char *_string);
 char *reverse2(char *_string);
 
