@@ -67,6 +67,10 @@ void initializeTable(){
     push_element(table,createHead(']',".---../\0")); // Closing Bracket.
     push_element(table,createHead('(',"-..-../\0")); // Open Parathensis
     push_element(table,createHead(')',".--.--/\0")); // Closing Parathensis.
+    push_element(table,createHead('<',"..-.--/\0")); // Open pointy-bracket;
+    push_element(table,createHead('>',"--.-.-/\0")); // Closing pointy-bracket.
+    push_element(table,createHead('+',"---..-/\0")); // '+' symbol.
+    push_element(table,createHead('-',"...--./\0")); // '-' symbol.
 }
 
 /// @brief This function is specifically designed for the 'Morse Table'. 
